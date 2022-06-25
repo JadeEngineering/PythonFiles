@@ -3,6 +3,7 @@
 """
 The simplest way to send via RMQ
 """
+import sys
 
 import pika
 import pika.exceptions
@@ -43,7 +44,11 @@ def simple_sender(message: str = "Hello Rabbitmq",
 
 
 if __name__ == "__main__":
-    if simple_sender():
+    if len(sys.argv) > 1:
+        arg_list = str(sys.argv[1])
+    else:
+        arg_list =["Moin"]
+    if simple_sender(str(arg_list)):
         print("Transmission successful")
     else:
         print("Transmission not successful")
